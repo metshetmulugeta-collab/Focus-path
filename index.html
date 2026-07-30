@@ -1,0 +1,255 @@
+[7/30/2026 11:09 AM] Mercy Mek: !DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusPath - Student Dashboard</title>
+    
+    <style>
+        /* Universal Resets */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Deep, calm background color */
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #94a3b8;
+        }
+
+        /* Dashboard Layout grid */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Clean, modern cards */
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        /* Timer Specific Styles */
+        .timer-display {
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            color: #f8fafc;
+            letter-spacing: 2px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s ease;
+        }
+
+        .btn-start {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        .btn-start:hover {
+            background-color: #0ea5e9;
+        }
+
+        .btn-reset {
+            background-color: #475569;
+            color: #f8fafc;
+        }
+
+        .btn-reset:hover {
+            background-color: #334155;
+        }
+
+        /* Roadmap List Styles */
+        .roadmap-list {
+            list-style: none;
+        }
+
+        .roadmap-list li {
+            margin-bottom: 20px;
+            border-left: 3px solid #38bdf8;
+            padding-left: 15px;
+        }
+
+        .roadmap-list strong {
+            display: block;
+            color: #f1f5f9;
+            margin-bottom: 4px;
+        }
+
+        .roadmap-list p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px 0 10px 0;
+            color: #475569;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Navigation Header -->
+    <header>
+        <h1>FocusPath</h1>
+        <p>Distraction-free tools for ambitious students</p>
+    </header>
+
+    <main class="dashboard-container">
+        
+        <!-- SECTION 1: THE FOCUS TIMER CARD -->
+        <section class="card focus-card">
+            <h2>Focus Zone</h2>
+            <p class="subtitle">Block out social media. Start a 25-minute study sprint.</p>
+            <div class="timer-display">25:00</div>
+            <div class="button-group">
+                <button class="btn btn-start">Start Sprint</button>
+                <button class="btn btn-reset">Reset</button>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THE SCHOLARSHIP ROADMAP CA
+[7/30/2026 11:09 AM] Mercy Mek: RD -->
+        <section class="card roadmap-card">
+            <h2>Scholarship Roadmap</h2>
+            <p class="subtitle">What international universities actually look for:</p>
+            
+            <ul class="roadmap-list">
+                <li>
+                    <strong>Step 1: Academic Excellence</strong>
+                    <p>Maintain your high GPA/percentage. Your 92.8% is perfect.</p>
+                </li>
+                <li>
+                    <strong>Step 2: Leadership & Community</strong>
+                    <p>Don't just study. Launch a club or lead a volunteer drive to stand out.</p>
+                </li>
+                <li>
+                    <strong>Step 3: Tech Innovation</strong>
+                    <p>Build real projects (like this app!) to prove your coding skills.</p>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Built to bridge the information gap for all small-town students.</p>
+    </footer>
+
+    <!-- Interactive script safely embedded right before the closing body tag -->
+    <script>
+        let timer;
+        let timeLeft = 25 * 60; 
+        let isRunning = false;
+
+        const display = document.querySelector('.timer-display');
+        const startBtn = document.querySelector('.btn-start');
+        const resetBtn = document.querySelector('.btn-reset');
+
+        function updateDisplay() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            
+            if (seconds < 10) seconds = '0' + seconds;
+            if (minutes < 10) minutes = '0' + minutes;
+
+            display.textContent = minutes + ':' + seconds;
+        }
+
+        startBtn.addEventListener('click', function() {
+            if (isRunning) {
+                clearInterval(timer);
+                startBtn.textContent = 'Start Sprint';
+                startBtn.style.backgroundColor = '#38bdf8';
+                isRunning = false;
+            } else {
+                isRunning = true;
+                startBtn.textContent = 'Pause';
+                startBtn.style.backgroundColor = '#f43f5e'; 
+                
+                timer = setInterval(function() {
+                    timeLeft--;
+                    updateDisplay();
+
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        alert("Sprint finished! Take a 5-minute break. Stay off social media!");
+                        timeLeft = 25 * 60;
+                        updateDisplay();
+                        startBtn.textContent = 'Start Sprint';
+                        startBtn.style.backgroundColor = '#38bdf8';
+                        isRunning = false;
+                    }
+                }, 1000); 
+            }
+        });
+
+        resetBtn.addEventListener('click', function() {
+            clearInterval(timer);
+            timeLeft = 25 * 60;
+            updateDisplay();
+            startBtn.textContent = 'Start Sprint';
+            startBtn.style.backgroundColor = '#38bdf8';
+            isRunning = false;
+        });
+    </script>
+
+</body>
+</html>
